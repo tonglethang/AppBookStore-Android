@@ -1,0 +1,145 @@
+package com.example.bookstore_tonglethang19ct2.Activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.ListView;
+
+import android.widget.ViewFlipper;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.bookstore_tonglethang19ct2.Adapter.TypeBookAdapter;
+import com.example.bookstore_tonglethang19ct2.Models.TypeBook;
+import com.example.bookstore_tonglethang19ct2.R;
+import com.example.bookstore_tonglethang19ct2.Utils.CheckConnection;
+import com.example.bookstore_tonglethang19ct2.Utils.Server;
+import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+    Toolbar toolbar;
+    ViewFlipper viewFipper;
+    RecyclerView recycler;
+    NavigationView naviChinh;
+    ListView listView;
+    DrawerLayout drawerLayout;
+    ArrayList<TypeBook> arrTypeBook;
+    TypeBookAdapter typeBookAdapter;
+
+    String id = "";
+    String name = "";
+    String image = "";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        anhXa();
+        if(CheckConnection.haveNetworkConnection(getApplicationContext())){
+            ActionBar();
+            ActionViewFlipper();
+            getDataTypeBook();
+        }
+        else{
+            CheckConnection.showToast_Short(getApplicationContext(), "You check connection !");
+            finish();
+        }
+
+    }
+
+    private void getDataTypeBook() {
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Server.linkTypeBook, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if(response != null){
+                    try {
+                        JSONArray jsonArray = response.getJSONArray("TypeBooks");
+                        for(int j = 0; j < jsonArray.length(); j++){
+                            JSONObject jsonObject = jsonArray.getJSONObject(j);
+                            id = jsonObject.getString("_id");
+                            name = jsonObject.getString("name");
+                            image = jsonObject.getString("image");
+                            arrTypeBook.add(new TypeBook(id, name, image));
+                            typeBookAdapter.notifyDataSetChanged();
+                        }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    arrTypeBook.add(3, new TypeBook("", "Liên hệ", "https://tamquatthanthien.vn/uploads/news/2020_03/telephone-icon.png "));
+                    arrTypeBook.add(4, new TypeBook("", "Thông tin", "https://support.casio.com/global/en/wat/manual/5413_en/fig/App_icon_02_VPCVILcirwnbhj.png"));
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                CheckConnection.showToast_Short(getApplicationContext(),error.toString());
+            }
+        });
+        queue.add(jsonObjectRequest);
+    }
+
+    private void ActionViewFlipper() {
+        ArrayList<String> arrImage = new ArrayList<>();
+        arrImage.add("https://theme.hstatic.net/1000363117/1000911694/14/ms_banner_img3.jpg?v=173");
+        arrImage.add("https://theme.hstatic.net/1000363117/1000911694/14/ms_banner_img2.jpg?v=173");
+        arrImage.add("https://theme.hstatic.net/1000363117/1000911694/14/ms_banner_img3.jpg?v=173");
+        for( int i = 0; i<arrImage.size(); i++ ){
+            ImageView imageView = new ImageView(getApplicationContext());
+            Picasso.get().load(arrImage.get(i)).into(imageView);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            viewFipper.addView(imageView);
+        }
+        viewFipper.setFlipInterval(4000);
+        viewFipper.setAutoStart(true);
+        Animation ani_slide_in = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_right);
+        Animation ani_slide_out = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_out_right);
+        viewFipper.setInAnimation(ani_slide_in);
+        viewFipper.setOutAnimation(ani_slide_out);
+    }
+
+    private void ActionBar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(android.R.drawable.ic_menu_sort_by_size);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+                
+            }
+        });
+    }
+
+
+    private void anhXa() {
+        toolbar = (Toolbar) findViewById(R.id.toolBarChinh);
+        viewFipper = (ViewFlipper) findViewById(R.id.viewFlipper);
+        recycler = (RecyclerView) findViewById(R.id.recyNew);
+        naviChinh  = (NavigationView) findViewById(R.id.naviChinh);
+        listView = (ListView) findViewById(R.id.listViewChinh);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        arrTypeBook = new ArrayList<>();
+        arrTypeBook.add(0, new TypeBook("", "Trang chủ", "https://cdn.pixabay.com/photo/2015/12/28/02/58/home-1110868_960_720.png"));
+        typeBookAdapter = new TypeBookAdapter(arrTypeBook, getApplicationContext());
+        listView.setAdapter(typeBookAdapter);
+    }
+}
