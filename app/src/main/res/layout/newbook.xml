@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardnewBook"
+        app:cardCornerRadius="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@drawable/newbanner"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="top|right"/>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imgBook"
+                    android:layout_margin="5dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"/>
+                <TextView
+                    android:id="@+id/nameBook"
+                    android:textColor="#00BCD4"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Ten San Pham"
+                    android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/priceBook"
+                    android:textSize="15sp"
+                    android:textColor="#E30B0B"
+                    android:gravity="center"
+                    android:text="100000"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+
+
+            </LinearLayout>
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

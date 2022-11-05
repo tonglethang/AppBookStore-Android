@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.DetailsActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarDetails"
+        app:title="Chi tiết sách"
+        app:titleTextColor="#FFF"
+        android:background="#00BCD4"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+    </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        <ImageView
+            android:id="@+id/imgDetails"
+            android:src="@drawable/cantruong"
+            android:layout_margin="10dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/nameDetails"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:text="Ten San phamr owr day acb olansjb lal bjals"
+                android:layout_marginTop="10dp"
+                android:textSize="18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/nxbDetails"
+                android:text="Nhà xuất bản: NXB HÀ NỘI"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/priceDetails"
+                android:text="100000đ"
+                android:textColor="#E60000"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_margin="3dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/spinner"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </Spinner>
+            <Button
+                android:id="@+id/addCart"
+                android:backgroundTint="#CFCFCF"
+                android:text="Thêm vào giỏ hàng"
+                android:textSize="13sp"
+                android:textColor="#000"
+                android:layout_marginRight="13dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="Mô tả:"
+            android:textSize="22sp"
+            android:textColor="#00BCD4"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/motaDetails"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Cuốn sách cung cấp hơn 200 bài tập đơn giản, lí thú và gần gũi với đời sống hằng ngày giúp nâng cao khả năng ghi nhớ và tái hiện kí ức, đồng thời cải thiện độ nhạy bén của trí não. Tối ưu hóa trí nhớ đồng thời hướng dẫn nhiều thủ thuật đã được các chuyên gia áp dụng thành công cùng những phương pháp hữu hiệu để phòng tránh hiện tượng đãng trí và nhầm lẫn. Ở từng chương, cuốn sách giúp bạn đánh giá mức tiến bộ của mình qua các bài kiểm tra “check-in”/“check-out”."
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

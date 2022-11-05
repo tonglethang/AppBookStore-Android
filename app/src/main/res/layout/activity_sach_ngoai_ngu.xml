@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.SachNgoaiNguActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBarNgoaiNgu"
+        app:title="Sách ngoại ngữ"
+        app:titleTextColor="#FFF"
+        android:background="#00BCD4"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+    </androidx.appcompat.widget.Toolbar>
+    <ListView
+        android:id="@+id/listViewNgoaiNgu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+</LinearLayout>

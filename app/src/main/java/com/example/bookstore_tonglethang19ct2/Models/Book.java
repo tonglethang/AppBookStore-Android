@@ -1,20 +1,22 @@
 package com.example.bookstore_tonglethang19ct2.Models;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book  implements Serializable {
     public String id;
-    public String name, image, nhaxuatban, type, mota, timecreate;
+    public String name, image, nhaxuatban, type, mota, idType;
     public int price,soluong;
 
-    public Book(String id, String name, String image, String nhaxuatban, String type, String mota, String timecreate, int price, int soluong) {
+    public Book(String id, String name, int price, String image, String nhaxuatban,int soluong, String type, String mota,String idType) {
         this.id = id;
         this.name = name;
         this.image = image;
         this.nhaxuatban = nhaxuatban;
         this.type = type;
         this.mota = mota;
-        this.timecreate = timecreate;
         this.price = price;
         this.soluong = soluong;
+        this.idType = idType;
     }
 
     public String getId() {
@@ -65,12 +67,12 @@ public class Book {
         this.mota = mota;
     }
 
-    public String getTimecreate() {
-        return timecreate;
+    public String getIdType() {
+        return idType;
     }
 
-    public void setTimecreate(String timecreate) {
-        this.timecreate = timecreate;
+    public void setIdType(String idType) {
+        this.idType = idType;
     }
 
     public int getPrice() {
