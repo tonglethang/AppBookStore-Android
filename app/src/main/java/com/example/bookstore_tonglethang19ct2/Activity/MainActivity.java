@@ -1,5 +1,6 @@
 package com.example.bookstore_tonglethang19ct2.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -9,6 +10,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -26,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.bookstore_tonglethang19ct2.Adapter.BookAdapter;
 import com.example.bookstore_tonglethang19ct2.Adapter.TypeBookAdapter;
 import com.example.bookstore_tonglethang19ct2.Models.Book;
+import com.example.bookstore_tonglethang19ct2.Models.Cart;
 import com.example.bookstore_tonglethang19ct2.Models.TypeBook;
 import com.example.bookstore_tonglethang19ct2.R;
 import com.example.bookstore_tonglethang19ct2.Utils.CheckConnection;
@@ -56,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
     String id = "";
     String name = "";
     String image = "";
+
+    public static ArrayList<Cart> arrCart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             ActionBar();
             ActionViewFlipper();
             getDataTypeBook();
-            getDataNewBook();
+            getDataAllBook();
 
             catchOnItemListView();
         }
@@ -75,6 +81,22 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuCart:
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void catchOnItemListView() {
@@ -96,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
                             Intent intent = new Intent(MainActivity.this, SachThieuNhiActivity.class);
                             intent.putExtra("idType", arrTypeBook.get(position).getId());
-                            startActivity(intent);
+                            startActivity(intent);;
                         }
                         else{
                             CheckConnection.showToast_Short(getApplicationContext(), "You check internet again !");
@@ -161,9 +183,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void getDataNewBook() {
+    private void getDataAllBook() {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Server.linkNewBook, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Server.linkAllBook, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 if(response != null){
@@ -251,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             viewFipper.addView(imageView);
         }
-        viewFipper.setFlipInterval(4000);
+        viewFipper.setFlipInterval(3000);
         viewFipper.setAutoStart(true);
         Animation ani_slide_in = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_right);
         Animation ani_slide_out = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_out_right);
@@ -289,6 +311,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerTrangchu.setHasFixedSize(true);
         recyclerTrangchu.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         recyclerTrangchu.setAdapter(bookAdapter);
+        if(arrCart != null){
+
+        }
+        else{
+            arrCart = new ArrayList<>();
+        }
 
     }
+    
+
 }

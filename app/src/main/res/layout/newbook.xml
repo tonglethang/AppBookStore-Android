@@ -11,21 +11,18 @@
         android:layout_height="match_parent">
 
         <FrameLayout
+            android:background="@drawable/border"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ImageView
-                android:src="@drawable/newbanner"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="top|right"/>
 
             <LinearLayout
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginRight="5dp">
 
                 <ImageView
                     android:id="@+id/imgBook"
@@ -39,12 +36,14 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="Ten San Pham"
-                    android:textSize="15sp"/>
+                    android:textSize="16sp"
+                    android:layout_marginBottom="5dp"/>
                 <TextView
                     android:id="@+id/priceBook"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
                     android:textColor="#E30B0B"
                     android:gravity="center"
+                    android:textStyle="bold"
                     android:text="100000"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"/>

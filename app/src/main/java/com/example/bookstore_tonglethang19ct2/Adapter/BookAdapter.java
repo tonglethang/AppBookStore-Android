@@ -1,6 +1,9 @@
 package com.example.bookstore_tonglethang19ct2.Adapter;
 
+import static java.security.AccessController.getContext;
+
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +12,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.bookstore_tonglethang19ct2.Activity.DetailsActivity;
+import com.example.bookstore_tonglethang19ct2.Interface.ItemClickListener;
 import com.example.bookstore_tonglethang19ct2.Models.Book;
 import com.example.bookstore_tonglethang19ct2.R;
 import com.squareup.picasso.Picasso;
@@ -42,6 +48,18 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ItemHolder>
                 .placeholder(R.drawable.img)
                 .error(R.drawable.img_1)
                 .into(holder.imgBook);
+        holder.setItemOnclick(new ItemClickListener() {
+            @Override
+            public void onClick(View view, int position, boolean isLongClick) {
+                if(isLongClick == true){
+                    Intent intent = new Intent(context, DetailsActivity.class);
+                    intent.putExtra("infomaitionBook", arrBook.get(position));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+
+                }
+            }
+        });
     }
 
     @Override
@@ -49,16 +67,29 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ItemHolder>
         return arrBook.size();
     }
 
-    public class ItemHolder extends RecyclerView.ViewHolder{
+    public class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView imgBook;
         public TextView nameBook;
         public TextView priceBook;
+        private ItemClickListener itemOnclick;
+
 
         public ItemHolder(@NonNull View itemView) {
             super(itemView);
             imgBook = (ImageView) itemView.findViewById(R.id.imgBook);
             nameBook = (TextView) itemView.findViewById(R.id.nameBook);
             priceBook = (TextView) itemView.findViewById(R.id.priceBook);
+            itemView.setOnClickListener(this);
+
+
+        }
+        public void setItemOnclick(ItemClickListener itemOnclick) {
+            this.itemOnclick = itemOnclick;
+        }
+
+        @Override
+        public void onClick(View view) {
+            itemOnclick.onClick(view, getAdapterPosition(), true);
         }
     }
 }

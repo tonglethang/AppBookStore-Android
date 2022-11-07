@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -60,6 +62,21 @@ public class SachNgoaiNguActivity extends AppCompatActivity {
             CheckConnection.showToast_Short(getApplicationContext(), "You check again  your connection !");
         }
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuCart:
+                Intent intent = new Intent(getApplicationContext(), CartActivity.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void LoadMoreData() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -101,7 +118,7 @@ public class SachNgoaiNguActivity extends AppCompatActivity {
                 String type = "";
                 String mota = "";
                 String idType = "";
-                if(response != null && response.length() != 52){
+                if(response != null && response.length() > 100){
                     listView.removeFooterView(footerView);
                     try {
                         JSONObject jsonObject_tmp = new JSONObject(response);
