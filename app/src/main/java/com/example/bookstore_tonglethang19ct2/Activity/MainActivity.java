@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
                             Intent intent = new Intent(MainActivity.this, SachThieuNhiActivity.class);
                             intent.putExtra("idType", arrTypeBook.get(position).getId());
-                            startActivity(intent);;
+                            startActivity(intent);
                         }
                         else{
                             CheckConnection.showToast_Short(getApplicationContext(), "You check internet again !");
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 5:
                         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
-                            Intent intent = new Intent(MainActivity.this, LienHeActivity.class);
+                            Intent intent = new Intent(MainActivity.this, AdminActivity.class);
                             startActivity(intent);
                         }
                         else{
@@ -264,7 +264,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void ActionViewFlipper() {
         ArrayList<String> arrImage = new ArrayList<>();
-        arrImage.add("https://theme.hstatic.net/1000363117/1000911694/14/ms_banner_img3.jpg?v=173");
         arrImage.add("https://theme.hstatic.net/1000363117/1000911694/14/ms_banner_img2.jpg?v=173");
         arrImage.add("https://theme.hstatic.net/1000363117/1000911694/14/ms_banner_img3.jpg?v=173");
         for( int i = 0; i<arrImage.size(); i++ ){

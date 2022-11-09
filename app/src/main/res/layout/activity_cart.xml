@@ -67,8 +67,10 @@
     </LinearLayout>
     <Button
         android:id="@+id/btnThanhtoan"
-        android:backgroundTint="@color/teal_200"
+        android:padding="11dp"
         android:layout_weight="1"
+        app:backgroundTint="@null"
+        android:background="@drawable/pillbutton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:textStyle="bold"
@@ -78,12 +80,13 @@
     <Button
         android:id="@+id/btnTiepTuc"
         android:layout_weight="1"
-        android:textColor="@color/black"
+        app:backgroundTint="#DADADA"
+        android:background="@drawable/pillbutton"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginRight="10dp"
-        android:backgroundTint="#B6B6B6"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
         android:text="Tiếp tục mua hàng"

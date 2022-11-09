@@ -50,11 +50,11 @@ public class CartAdapter extends BaseAdapter {
         public ImageView imgCart;
         public Button btnMinus, btnPlus, btnValue;
     }
-    ViewHolder viewHolder = null;
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+        ViewHolder viewHolder;
         if (view == null){
-             viewHolder = new ViewHolder();
+            viewHolder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.cart, null);
             viewHolder.nameCart = view.findViewById(R.id.nameCart);

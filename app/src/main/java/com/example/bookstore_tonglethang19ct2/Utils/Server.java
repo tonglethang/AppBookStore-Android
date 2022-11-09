@@ -5,4 +5,6 @@ public class Server {
     public static  String linkTypeBook = "http://" +  localhost + "/typebook/all";
     public  static  String linkAllBook = "http://" +  localhost + "/allbook";
     public static  String linkBooks = "http://" +  localhost + "/book/";
+    public static  String linkCustomer = "http://" +  localhost + "/createCus";
+    public static  String linkDonhang = "http://" +  localhost + "/createDonhang";
 }

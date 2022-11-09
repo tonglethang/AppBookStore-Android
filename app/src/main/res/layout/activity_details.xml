@@ -68,14 +68,16 @@
             </Spinner>
             <Button
                 android:id="@+id/addCart"
-                android:backgroundTint="#CFCFCF"
+                android:background="@drawable/pillbutton"
+                app:backgroundTint="@null"
                 android:text="Thêm vào giỏ hàng"
                 android:textSize="13sp"
-                android:textColor="#000"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:layout_marginRight="13dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_marginTop="10dp"
+                android:layout_height="40dp" >
             </Button>
         </LinearLayout>
     </LinearLayout>
@@ -93,6 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ScrollView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
             <TextView
