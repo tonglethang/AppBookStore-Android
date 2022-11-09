@@ -20,9 +20,9 @@ public class KinhTeAdapter extends BaseAdapter {
     Context context;
     ArrayList<Book> arrKinhTeBook;
 
-    public KinhTeAdapter(Context context, ArrayList<Book> arrThieuNhiBook) {
+    public KinhTeAdapter(Context context, ArrayList<Book> arrKinhTeBook) {
         this.context = context;
-        this.arrKinhTeBook = arrThieuNhiBook;
+        this.arrKinhTeBook = arrKinhTeBook;
     }
 
     @Override

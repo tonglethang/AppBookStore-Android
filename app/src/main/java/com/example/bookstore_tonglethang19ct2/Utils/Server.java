@@ -7,4 +7,6 @@ public class Server {
     public static  String linkBooks = "http://" +  localhost + "/book/";
     public static  String linkCustomer = "http://" +  localhost + "/createCus";
     public static  String linkDonhang = "http://" +  localhost + "/createDonhang";
+
+    public static  String linkAllBookAdmin = "http://" +  localhost + "/allbookadmin";
 }

@@ -10,14 +10,17 @@
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1615" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/drawable/pillbutton.xml" value="0.1615" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/drawable/spinner.xml" value="0.149" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/activity_admin.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/activity_cart.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/activity_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/activity_info_user.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/activity_login_admin_actitvity.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/activity_sach_kinh_te.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/activity_sach_ngoai_ngu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/activity_sach_tam_ly.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/activity_sach_thieu_nhi.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/adminbook.xml" value="0.253125" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/cart.xml" value="0.253125" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/kinhte.xml" value="0.253125" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/layout/listview_book.xml" value="0.25416666666666665" />

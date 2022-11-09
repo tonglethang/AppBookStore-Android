@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
             ActionViewFlipper();
             getDataTypeBook();
             getDataAllBook();
-
             catchOnItemListView();
         }
         else{
@@ -160,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 5:
                         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
-                            Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+                            Intent intent = new Intent(MainActivity.this, LoginAdminActitvity.class);
                             startActivity(intent);
                         }
                         else{
@@ -249,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                    arrTypeBook.add(5, new TypeBook("", "Liên hệ", "https://tamquatthanthien.vn/uploads/news/2020_03/telephone-icon.png "));
+                    arrTypeBook.add(5, new TypeBook("", "Admin", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfjno7hGrNNuPZwaFZ8U8Mhr_Yq39rzd_p0YN_HVYk6KFmMETjtgd9bwl0UhU6g4xDDGg&usqp=CAU"));
                     arrTypeBook.add(6, new TypeBook("", "Thông tin", "https://support.casio.com/global/en/wat/manual/5413_en/fig/App_icon_02_VPCVILcirwnbhj.png"));
                 }
             }
