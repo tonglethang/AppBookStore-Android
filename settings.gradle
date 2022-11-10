@@ -10,7 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-    }
+     }
 }
 rootProject.name = "BookStore_TongLeThang19CT2"
 include ':app'

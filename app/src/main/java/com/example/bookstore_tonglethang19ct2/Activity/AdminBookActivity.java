@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 
@@ -54,6 +55,8 @@ public class AdminBookActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
 
     PopupMenu popup;
+
+    Button addBook;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,14 @@ public class AdminBookActivity extends AppCompatActivity {
             GetData(page);
             LoadMoreData();
             catchOnItemListView();
+
+            addBook.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), AddBookActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
         else{
             CheckConnection.showToast_Short(getApplicationContext(), "You check your connection again !");
@@ -216,6 +227,7 @@ public class AdminBookActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         footerView = inflater.inflate(R.layout.processbar, null);
         myHandler = new myHandler();
+        addBook = findViewById(R.id.addBook);
     }
     public class myHandler extends Handler {
         @Override
