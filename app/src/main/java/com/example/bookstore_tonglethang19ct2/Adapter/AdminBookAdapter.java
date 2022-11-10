@@ -70,7 +70,7 @@ public class AdminBookAdapter extends BaseAdapter {
                 .placeholder(R.drawable.img)
                 .error(R.drawable.img_1)
                 .into(viewHolder.imgBook);
-        //set maxLine()
         return view;
     }
+
 }

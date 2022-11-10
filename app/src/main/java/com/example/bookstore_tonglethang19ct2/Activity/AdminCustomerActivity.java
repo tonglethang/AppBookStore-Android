@@ -1,13 +1,15 @@
 package com.example.bookstore_tonglethang19ct2.Activity;
 
-import static java.util.stream.Collectors.mapping;
+import static com.example.bookstore_tonglethang19ct2.Activity.CartActivity.EventUtills;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,8 +31,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bookstore_tonglethang19ct2.Adapter.AdminAdapter;
 import com.example.bookstore_tonglethang19ct2.Adapter.AdminBookAdapter;
+import com.example.bookstore_tonglethang19ct2.Adapter.AdminCustomerAdapter;
 import com.example.bookstore_tonglethang19ct2.Models.Admin;
 import com.example.bookstore_tonglethang19ct2.Models.Book;
+import com.example.bookstore_tonglethang19ct2.Models.Customer;
 import com.example.bookstore_tonglethang19ct2.R;
 import com.example.bookstore_tonglethang19ct2.Utils.CheckConnection;
 import com.example.bookstore_tonglethang19ct2.Utils.Server;
@@ -42,26 +46,25 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class AdminActivity extends AppCompatActivity {
+public class AdminCustomerActivity extends AppCompatActivity {
+
     Toolbar toolbar;
     ListView listView, listAdmin;
     NavigationView naviAdmin;
-    AdminBookAdapter adminbookAdapter;
+    AdminCustomerAdapter adminCustomerAdapter;
     AdminAdapter adminAdapter;
-    ArrayList<Book> arrBook;
+    ArrayList<Customer> arrCustomer;
     ArrayList<Admin> arrAdmin;
     int page = 1;
     View footerView;
     boolean isLoading;
     boolean limitData = false;
-    AdminActivity.myHandler myHandler;
+    myHandler myHandler;
     DrawerLayout drawerLayout;
-
-    PopupMenu popup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.activity_admin_customer);
 
         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
             mapping();
@@ -85,48 +88,70 @@ public class AdminActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case 1:
-                        Intent intent1 = new Intent(getApplicationContext(), AdminCustomerActivity.class);
-                        startActivity(intent1);
                         break;
                     case 2:
                         break;
                     case 3:
-                        Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent3);
+                        Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent1);
                         break;
                 }
+            }
+        });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(AdminCustomerActivity.this);
+                builder.setTitle("Xác nhận !");
+                builder.setMessage("Bạn có chắc xóa khách hàng này ?");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                        String link = Server.linkDeleteCustomerAdmin + "?idCus=" + arrCustomer.get(pos).getId();
+
+                        StringRequest stringRequest = new StringRequest(Request.Method.GET, link, new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    String status = jsonObject.getString("status");
+                                    if(status.equals("success")){
+                                        CheckConnection.showToast_Short(getApplicationContext(), "Đã xóa khách hàng thành công !");
+                                        Intent intent = new Intent(getApplicationContext(), AdminCustomerActivity.class);
+                                        startActivity(intent);
+                                    }
+                                    else{
+                                        CheckConnection.showToast_Short(getApplicationContext(), "Lỗi: " + status);
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                            }
+                        });
+                        queue.add(stringRequest);
+                    }
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                builder.show();
+                return true;
             }
         });
 
     }
 
     private void LoadMoreData() {
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                popup = new PopupMenu(getApplicationContext(), view);
-                MenuInflater inflater = popup.getMenuInflater();
-                inflater.inflate(R.menu.menubook, popup.getMenu());
-                popup.show();
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-
-                            case R.id.menuUpdate:
-
-                                break;
-
-                            case R.id.menuDelete:
-
-                                break;
-
-                        }
-                        return false;
-                    }
-                });
-            }
-        });
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) {
@@ -137,7 +162,7 @@ public class AdminActivity extends AppCompatActivity {
             public void onScroll(AbsListView absListView, int firstItem, int visibleItem, int totalItem) {
                 if(firstItem + visibleItem == totalItem && totalItem != 0 && isLoading == false && limitData == false){
                     isLoading = true;
-                    AdminActivity.ThreadData threadData = new AdminActivity.ThreadData();
+                    AdminCustomerActivity.ThreadData threadData = new AdminCustomerActivity.ThreadData();
                     threadData.start();
                 }
             }
@@ -146,37 +171,30 @@ public class AdminActivity extends AppCompatActivity {
     private void GetData(int Page) {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
-        String link = Server.linkAllBookAdmin+"?page=" + Page;
+        String link = Server.linkAllCustomerAdmin + "?page=" + Page;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, link, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 String id = "";
                 String name = "";
-                Integer price = 0;
-                String img = "";
-                String  nhaxuatban = "";
-                Integer soluong = 0;
-                String type = "";
-                String mota = "";
-                String idType = "";
+                String email = "";
+                String phone = "";
+                String address = "";
                 if(response != null && response.length() > 100){
                     listView.removeFooterView(footerView);
                     try {
                         JSONObject jsonObject_tmp = new JSONObject(response);
-                        JSONArray jsonArray  =  jsonObject_tmp.getJSONArray("Books");
+                        JSONArray jsonArray  =  jsonObject_tmp.getJSONArray("Customer");
                         for(int i = 0; i < jsonArray.length(); i++){
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             id = jsonObject.getString("_id");
-                            name = jsonObject.getString("name");
-                            price = jsonObject.getInt("price");
-                            img = jsonObject.getString("image");
-                            nhaxuatban = jsonObject.getString("nhaxuatban");
-                            soluong = jsonObject.getInt("soluong");
-                            type = jsonObject.getString("type");
-                            mota = jsonObject.getString("mota");
-                            idType = jsonObject.getString("idType");
-                            arrBook.add(new Book(id, name, price, img, nhaxuatban, soluong, type, mota, idType));
-                            adminbookAdapter.notifyDataSetChanged();
+                            name = jsonObject.getString("fullname");
+                            email = jsonObject.getString("email");
+                            phone = jsonObject.getString("phone");
+                            address = jsonObject.getString("address");
+
+                            arrCustomer.add((new Customer(id, name, email, phone, address)));
+                            adminCustomerAdapter.notifyDataSetChanged();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -209,19 +227,19 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void mapping() {
-        toolbar = findViewById(R.id.toolBarAdminBook);
-        listView = findViewById(R.id.allBook);
-        listAdmin = findViewById(R.id.listViewAdmin);
+        toolbar = findViewById(R.id.toolBarAdminCus);
+        listView = findViewById(R.id.allCustomer);
+        listAdmin = findViewById(R.id.listViewCustomer);
         naviAdmin = findViewById(R.id.naviAdmin);
-        arrBook = new ArrayList<>();
+        arrCustomer = new ArrayList<>();
         arrAdmin = new ArrayList<>();
         drawerLayout = findViewById(R.id.drawerAdmin);
-        adminbookAdapter = new AdminBookAdapter(getApplicationContext(), arrBook);
-        listView.setAdapter(adminbookAdapter);
+        adminCustomerAdapter = new AdminCustomerAdapter(getApplicationContext(), arrCustomer);
+        listView.setAdapter( adminCustomerAdapter);
         arrAdmin.add(0, new Admin("Quản lý sách", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Closed_Book_Icon.svg/1200px-Closed_Book_Icon.svg.png"));
         arrAdmin.add(1, new Admin("Quản lý khách hàng", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtF3o2PvqxOMHgdrpj_YRItsLBjxyTeNZu_Q&usqp=CAU"));
         arrAdmin.add(2, new Admin("Quản lý đơn hàng", "https://c8.alamy.com/comp/2ANK9RP/order-receipt-flat-icon-2ANK9RP.jpg"));
-        arrAdmin.add(3, new Admin("Đăng xuất", "https://cdn-icons-png.flaticon.com/512/3094/3094700.png"));
+        arrAdmin.add(3, new Admin("Thoát", "https://cdn-icons-png.flaticon.com/512/3094/3094700.png"));
         adminAdapter = new AdminAdapter(arrAdmin, getApplicationContext());
         listAdmin.setAdapter(adminAdapter);
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);

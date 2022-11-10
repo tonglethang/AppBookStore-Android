@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.AdminActivity"
-    android:orientation="horizontal"
-    >
+    tools:context=".Activity.AdminCustomerActivity"
+    android:orientation="horizontal">
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerAdmin"
         android:layout_width="match_parent"
@@ -17,8 +16,8 @@
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolBarAdminBook"
-                app:title="Quản lý sách"
+                android:id="@+id/toolBarAdminCus"
+                app:title="Quản lý khách hàng"
                 app:titleTextColor="#FFF"
                 android:background="#4CAF50"
                 android:layout_width="match_parent"
@@ -29,20 +28,8 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-                <Button
-                    android:id="@+id/addBook"
-                    android:layout_margin="10dp"
-                    android:text="+ Thêm sách"
-                    android:textColor="#FF1100"
-                    android:textStyle="bold"
-                    android:background="@drawable/pillbutton"
-                    app:backgroundTint="#FFEB3B"
-                    android:layout_width="138dp"
-                    android:layout_height="50dp">
-
-                </Button>
                 <ListView
-                    android:id="@+id/allBook"
+                    android:id="@+id/allCustomer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 </ListView>
@@ -50,12 +37,12 @@
         </LinearLayout>
 
         <com.google.android.material.navigation.NavigationView
-            android:id="@+id/naviAdmin"
+            android:id="@+id/naviCustomer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start">
             <ListView
-                android:id="@+id/listViewAdmin"
+                android:id="@+id/listViewCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </ListView>

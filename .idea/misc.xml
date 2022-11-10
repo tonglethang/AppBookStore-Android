@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/drawable/border.xml" value="0.147" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.147" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/activity_admin.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/activity_admin_customer.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/admin.xml" value="0.253125" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/adminbook.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/customer.xml" value="0.253125" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/kinhte.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/listview_typebook.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/menu/menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/menu/menubook.xml" value="0.253125" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/drawable/border.xml" value="0.149" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/drawable/borderedittext.xml" value="0.1615" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/drawable/borderinfo.xml" value="0.1615" />
