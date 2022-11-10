@@ -1,7 +1,5 @@
 package com.example.bookstore_tonglethang19ct2.Activity;
 
-import static com.example.bookstore_tonglethang19ct2.Activity.CartActivity.EventUtills;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,13 +13,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,11 +24,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.bookstore_tonglethang19ct2.Adapter.AdminAdapter;
-import com.example.bookstore_tonglethang19ct2.Adapter.AdminBookAdapter;
 import com.example.bookstore_tonglethang19ct2.Adapter.AdminCustomerAdapter;
 import com.example.bookstore_tonglethang19ct2.Models.Admin;
-import com.example.bookstore_tonglethang19ct2.Models.Book;
 import com.example.bookstore_tonglethang19ct2.Models.Customer;
 import com.example.bookstore_tonglethang19ct2.R;
 import com.example.bookstore_tonglethang19ct2.Utils.CheckConnection;
@@ -52,7 +44,6 @@ public class AdminCustomerActivity extends AppCompatActivity {
     ListView listView, listAdmin;
     NavigationView naviAdmin;
     AdminCustomerAdapter adminCustomerAdapter;
-    AdminAdapter adminAdapter;
     ArrayList<Customer> arrCustomer;
     ArrayList<Admin> arrAdmin;
     int page = 1;
@@ -84,7 +75,7 @@ public class AdminCustomerActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 switch(position){
                     case 0:
-                        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), AdminBookActivity.class);
                         startActivity(intent);
                         break;
                     case 1:
@@ -217,11 +208,10 @@ public class AdminCustomerActivity extends AppCompatActivity {
     private void ActionToolBar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationIcon(android.R.drawable.ic_menu_sort_by_size);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
+                finish();
             }
         });
     }
@@ -236,12 +226,6 @@ public class AdminCustomerActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerAdmin);
         adminCustomerAdapter = new AdminCustomerAdapter(getApplicationContext(), arrCustomer);
         listView.setAdapter( adminCustomerAdapter);
-        arrAdmin.add(0, new Admin("Quản lý sách", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Closed_Book_Icon.svg/1200px-Closed_Book_Icon.svg.png"));
-        arrAdmin.add(1, new Admin("Quản lý khách hàng", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtF3o2PvqxOMHgdrpj_YRItsLBjxyTeNZu_Q&usqp=CAU"));
-        arrAdmin.add(2, new Admin("Quản lý đơn hàng", "https://c8.alamy.com/comp/2ANK9RP/order-receipt-flat-icon-2ANK9RP.jpg"));
-        arrAdmin.add(3, new Admin("Thoát", "https://cdn-icons-png.flaticon.com/512/3094/3094700.png"));
-        adminAdapter = new AdminAdapter(arrAdmin, getApplicationContext());
-        listAdmin.setAdapter(adminAdapter);
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         footerView = inflater.inflate(R.layout.processbar, null);
         myHandler = new myHandler();

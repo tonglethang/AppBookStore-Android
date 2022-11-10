@@ -1,7 +1,5 @@
 package com.example.bookstore_tonglethang19ct2.Activity;
 
-import static java.util.stream.Collectors.mapping;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,7 +25,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.bookstore_tonglethang19ct2.Adapter.AdminAdapter;
 import com.example.bookstore_tonglethang19ct2.Adapter.AdminBookAdapter;
 import com.example.bookstore_tonglethang19ct2.Models.Admin;
 import com.example.bookstore_tonglethang19ct2.Models.Book;
@@ -42,26 +39,25 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class AdminActivity extends AppCompatActivity {
+public class AdminBookActivity extends AppCompatActivity {
     Toolbar toolbar;
     ListView listView, listAdmin;
     NavigationView naviAdmin;
     AdminBookAdapter adminbookAdapter;
-    AdminAdapter adminAdapter;
     ArrayList<Book> arrBook;
     ArrayList<Admin> arrAdmin;
     int page = 1;
     View footerView;
     boolean isLoading;
     boolean limitData = false;
-    AdminActivity.myHandler myHandler;
+    AdminBookActivity.myHandler myHandler;
     DrawerLayout drawerLayout;
 
     PopupMenu popup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin);
+        setContentView(R.layout.activity_admin_book);
 
         if(CheckConnection.haveNetworkConnection(getApplicationContext())){
             mapping();
@@ -81,7 +77,7 @@ public class AdminActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 switch(position){
                     case 0:
-                        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), AdminBookActivity.class);
                         startActivity(intent);
                         break;
                     case 1:
@@ -137,7 +133,7 @@ public class AdminActivity extends AppCompatActivity {
             public void onScroll(AbsListView absListView, int firstItem, int visibleItem, int totalItem) {
                 if(firstItem + visibleItem == totalItem && totalItem != 0 && isLoading == false && limitData == false){
                     isLoading = true;
-                    AdminActivity.ThreadData threadData = new AdminActivity.ThreadData();
+                    AdminBookActivity.ThreadData threadData = new AdminBookActivity.ThreadData();
                     threadData.start();
                 }
             }
@@ -199,11 +195,10 @@ public class AdminActivity extends AppCompatActivity {
     private void ActionToolBar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationIcon(android.R.drawable.ic_menu_sort_by_size);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
+                finish();
             }
         });
     }
@@ -218,12 +213,6 @@ public class AdminActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerAdmin);
         adminbookAdapter = new AdminBookAdapter(getApplicationContext(), arrBook);
         listView.setAdapter(adminbookAdapter);
-        arrAdmin.add(0, new Admin("Quản lý sách", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Closed_Book_Icon.svg/1200px-Closed_Book_Icon.svg.png"));
-        arrAdmin.add(1, new Admin("Quản lý khách hàng", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtF3o2PvqxOMHgdrpj_YRItsLBjxyTeNZu_Q&usqp=CAU"));
-        arrAdmin.add(2, new Admin("Quản lý đơn hàng", "https://c8.alamy.com/comp/2ANK9RP/order-receipt-flat-icon-2ANK9RP.jpg"));
-        arrAdmin.add(3, new Admin("Đăng xuất", "https://cdn-icons-png.flaticon.com/512/3094/3094700.png"));
-        adminAdapter = new AdminAdapter(arrAdmin, getApplicationContext());
-        listAdmin.setAdapter(adminAdapter);
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         footerView = inflater.inflate(R.layout.processbar, null);
         myHandler = new myHandler();

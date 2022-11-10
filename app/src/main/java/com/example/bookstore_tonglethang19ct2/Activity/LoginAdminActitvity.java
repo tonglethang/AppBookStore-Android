@@ -1,7 +1,5 @@
 package com.example.bookstore_tonglethang19ct2.Activity;
 
-import static java.util.stream.Collectors.mapping;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -30,7 +28,7 @@ public class LoginAdminActitvity extends AppCompatActivity {
                 }
                 else{
                     if(username.getText().toString().equals("admin") && password.getText().toString().equals("123")){
-                        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), AdminActitvity.class);
                         startActivity(intent);
                     }
                     else{
