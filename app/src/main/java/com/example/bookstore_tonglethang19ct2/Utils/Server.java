@@ -12,4 +12,6 @@ public class Server {
     public static  String linkAllCustomerAdmin = "http://" +  localhost + "/customeradmin";
     public static  String linkDeleteCustomerAdmin = "http://" +  localhost + "/deleteCus";
     public static  String linkAddBook = "http://" +  localhost + "/addBook";
+    public static  String linkUpdateBook = "http://" +  localhost + "/updateBook";
+    public static  String linkDeleteBook = "http://" +  localhost + "/deleteBook";
 }

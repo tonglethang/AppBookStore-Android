@@ -1,6 +1,5 @@
 package com.example.bookstore_tonglethang19ct2.Activity;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -19,7 +18,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
+import com.example.bookstore_tonglethang19ct2.Models.Book;
 import com.example.bookstore_tonglethang19ct2.R;
 import com.example.bookstore_tonglethang19ct2.Utils.CheckConnection;
 import com.example.bookstore_tonglethang19ct2.Utils.Server;
@@ -41,40 +40,47 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class AddBookActivity extends AppCompatActivity {
-    ImageView imgPick;
-    Button addBook, back;
+public class UpdateBookActivity extends AppCompatActivity {
+    ImageView imgPick, imgOld;
+    Button updateBook, back;
 
     private static int IMAGE_REQ;
     private static String TAG = "Upload image @@@@";
     private Uri imgPath;
     String urlImg;
 
+    String idBook;
     String typeBook;
+    String urlImgOld;
     EditText name, price, soluong, nhaxuatban, mota;
     RadioButton thieunhiBook, kinhteBook, ngoainguBook, tamlyBook;
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_book);
+        setContentView(R.layout.activity_update_book);
         mapping();
         ActionToolBar();
-        configCloud();
-
+        GetData();
         imgPick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 requestPermissions();
             }
         });
-        addBook.setOnClickListener(new View.OnClickListener() {
+
+
+        updateBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(imgPath == null){
-                    CheckConnection.showToast_Short(getApplicationContext(), "Vui lòng chọn ảnh !");
+                    Log.d(TAG, "urlOld: " + urlImgOld);
+                    Log.d(TAG, "url: " + urlImg);
+                    InsertData(urlImgOld);
                 }
                 else{
+                    configCloud();
                     MediaManager.get().upload(imgPath).callback(new UploadCallback() {
                         @Override
                         public void onStart(String requestId) {
@@ -91,7 +97,7 @@ public class AddBookActivity extends AppCompatActivity {
                             Log.d(TAG, "onStart: " + "success");
                             urlImg = Objects.requireNonNull(resultData.get("url").toString());
                             Log.d(TAG, "url: " + urlImg);
-                            InsertData();
+                            InsertData(urlImg);
                         }
 
                         @Override
@@ -107,16 +113,15 @@ public class AddBookActivity extends AppCompatActivity {
                 }
             }
         });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
     }
-
-    private void  InsertData() {
+    private void  InsertData(String urlImg) {
         if(name.getText().toString().length() <= 0 || price.getText().toString().length() <= 0|| soluong.getText().toString().length() <= 0|| nhaxuatban.getText().toString().length() <= 0|| mota.getText().toString().length() <= 0){
             CheckConnection.showToast_Short(getApplicationContext(),"Vui lòng nhập đầy đủ thông tin sách !");
         }
@@ -133,7 +138,7 @@ public class AddBookActivity extends AppCompatActivity {
                 }
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                 Log.d("acb" ,"ABC: " + urlImg);
-                String link = Server.linkAddBook + "?name=" + name.getText().toString() + "&price=" + price.getText().toString() + "&image=" + urlImg
+                String link = Server.linkUpdateBook+ "?id="+ idBook + "&name=" + name.getText().toString() + "&price=" + price.getText().toString() + "&image=" + urlImg
                         + "&soluong=" + soluong.getText().toString() + "&nhaxuatban=" + nhaxuatban.getText().toString() + "&type=" + typeBook + "&mota=" + mota.getText().toString();
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, link, new Response.Listener<String>() {
                     @Override
@@ -142,8 +147,9 @@ public class AddBookActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             String status = jsonObject.getString("status");
                             if (status.equals("success")){
-                                CheckConnection.showToast_Short(getApplicationContext(), "Đã thêm sách thành công !");
-                                finish();
+                                CheckConnection.showToast_Short(getApplicationContext(), "Đã update sách thành công !");
+                                Intent intent = new Intent(getApplicationContext(), AdminBookActivity.class);
+                                startActivity(intent);
                             }
                             else{
                                 CheckConnection.showToast_Short(getApplicationContext(), status);
@@ -160,29 +166,55 @@ public class AddBookActivity extends AppCompatActivity {
                     }
                 });
                 queue.add(stringRequest);
-             }
+            }
             else{
                 CheckConnection.showToast_Short(getApplicationContext(),"Vui lòng nhập đầy đủ thông tin sách !");
             }
         }
     }
+    private void GetData() {
+        Book book = (Book) getIntent().getSerializableExtra("infoBook");
+        idBook = book.getId();
+        name.setText(book.getName());
+        price.setText(book.getPrice()+"");
+        soluong.setText(book.getSoluong()+"");
+        nhaxuatban.setText(book.getNhaxuatban());
+        mota.setText(book.getMota());
+        if(book.getType().equals("Sách thiếu nhi")){
+            thieunhiBook.setChecked(true);
+        }
+        if(book.getType().equals("Sách kinh tế")){
+            kinhteBook.setChecked(true);
+        }
+        if(book.getType().equals("Sách ngoại ngữ")){
+            ngoainguBook.setChecked(true);
+        }
+        if(book.getType().equals("Sách tâm lý")){
+            tamlyBook.setChecked(true);
+        }
+        urlImgOld = book.getImage();
+        Picasso.get().load(book.getImage())
+                .placeholder(R.drawable.img)
+                .error(R.drawable.img_1)
+                .into(imgOld);
+    }
 
     private void requestPermissions() {
-        if(ContextCompat.checkSelfPermission(AddBookActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+        if(ContextCompat.checkSelfPermission(UpdateBookActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             selectImg();
         }
         else{
-            ActivityCompat.requestPermissions(AddBookActivity.this, new String[]{
+            ActivityCompat.requestPermissions(UpdateBookActivity.this, new String[]{
                     Manifest.permission.READ_EXTERNAL_STORAGE
             }, 1);
         }
     }
 
     private void selectImg() {
-      Intent intent = new Intent();
-      intent.setType("image/*");
-      intent.setAction(Intent.ACTION_GET_CONTENT);
-      startActivityForResult(intent,IMAGE_REQ);
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,IMAGE_REQ);
 
     }
 
@@ -204,6 +236,7 @@ public class AddBookActivity extends AppCompatActivity {
                     .into(imgPick);
         }
     }
+
     private void ActionToolBar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -215,9 +248,10 @@ public class AddBookActivity extends AppCompatActivity {
         });
     }
     private void mapping() {
-        toolbar = findViewById(R.id.toolBarAddBook);
+        toolbar = findViewById(R.id.toolBarUpdateBook);
+        imgOld = findViewById(R.id.imgOld);
         imgPick = findViewById(R.id.imgPick);
-        addBook = findViewById(R.id.addBook);
+        updateBook = findViewById(R.id.updateBook);
         back = findViewById(R.id.back);
         name = findViewById(R.id.nameBook);
         price  =findViewById(R.id.priceBook);

@@ -1,11 +1,13 @@
 package com.example.bookstore_tonglethang19ct2.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -119,13 +121,55 @@ public class AdminBookActivity extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
-
                             case R.id.menuUpdate:
-
+                                Intent intent = new Intent(getApplicationContext(), UpdateBookActivity.class);
+                                intent.putExtra("infoBook", arrBook.get(i));
+                                startActivity(intent);
                                 break;
-
                             case R.id.menuDelete:
+                                AlertDialog.Builder builder = new AlertDialog.Builder(AdminBookActivity.this);
+                                builder.setTitle("Xác nhận !");
+                                builder.setMessage("Bạn có chắc chắn xóa sản phẩm này ?");
+                                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int j) {
+                                        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                                        String link = Server.linkDeleteBook + "?id=" + arrBook.get(i).getId();
+                                        StringRequest stringRequest = new StringRequest(Request.Method.GET, link, new Response.Listener<String>() {
+                                            @Override
+                                            public void onResponse(String response) {
+                                                try {
+                                                    JSONObject jsonObject = new JSONObject(response);
+                                                    String status = jsonObject.getString("status");
+                                                    if(status.equals("success")){
+                                                        CheckConnection.showToast_Short(getApplicationContext(), "Đã xóa sách thành công !");
+                                                        Intent intent = new Intent(getApplicationContext(), AdminBookActivity.class);
+                                                        startActivity(intent);
+                                                    }
+                                                    else{
+                                                        CheckConnection.showToast_Short(getApplicationContext(), "Lỗi: " + status);
+                                                    }
 
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+
+                                            }
+                                        }, new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+
+                                            }
+                                        });
+                                        queue.add(stringRequest);
+                                    }
+                                });
+                                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                    }
+                                });
+                                builder.show();
                                 break;
 
                         }

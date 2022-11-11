@@ -19,7 +19,7 @@
                 android:id="@+id/toolBarAdminCus"
                 app:title="Quản lý khách hàng"
                 app:titleTextColor="#FFF"
-                android:background="#4CAF50"
+                android:background="#FF9800"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
 
