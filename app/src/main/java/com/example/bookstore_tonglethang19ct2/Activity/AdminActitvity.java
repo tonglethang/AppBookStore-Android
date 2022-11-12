@@ -48,8 +48,8 @@ public class AdminActitvity extends AppCompatActivity {
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), AdminCustomerActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), AdminOrderActivity.class);
+                startActivity(intent);
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {

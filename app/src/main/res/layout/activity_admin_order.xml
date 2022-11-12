@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.AdminCustomerActivity"
+    tools:context=".Activity.AdminOrderActivity"
     android:orientation="horizontal">
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerAdmin"
@@ -16,10 +16,10 @@
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolBarAdminCus"
-                app:title="Quản lý khách hàng"
+                android:id="@+id/toolBarOrder"
+                app:title="Quản lý đơn hàng"
                 app:titleTextColor="#FFF"
-                android:background="#FF9800"
+                android:background="#9C27B0"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
 
@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ListView
-                    android:id="@+id/allCustomer"
+                    android:id="@+id/allOrder"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 </ListView>

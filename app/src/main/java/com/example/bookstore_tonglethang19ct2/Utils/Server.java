@@ -14,4 +14,7 @@ public class Server {
     public static  String linkAddBook = "http://" +  localhost + "/addBook";
     public static  String linkUpdateBook = "http://" +  localhost + "/updateBook";
     public static  String linkDeleteBook = "http://" +  localhost + "/deleteBook";
+
+    public static  String linkOrder= "http://" +  localhost + "/donhang";
+    public static  String linkDetailsOrder= "http://" +  localhost + "/chitietOrder";
 }
