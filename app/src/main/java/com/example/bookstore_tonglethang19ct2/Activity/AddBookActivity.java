@@ -1,6 +1,10 @@
 package com.example.bookstore_tonglethang19ct2.Activity;
 
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -13,10 +17,13 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RadioButton;
 
 
@@ -54,13 +61,15 @@ public class AddBookActivity extends AppCompatActivity {
     EditText name, price, soluong, nhaxuatban, mota;
     RadioButton thieunhiBook, kinhteBook, ngoainguBook, tamlyBook;
     Toolbar toolbar;
+    View footerView;
+    LinearLayout linear;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book);
         mapping();
         ActionToolBar();
-        configCloud();
+
 
         imgPick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,10 +84,12 @@ public class AddBookActivity extends AppCompatActivity {
                     CheckConnection.showToast_Short(getApplicationContext(), "Vui lòng chọn ảnh !");
                 }
                 else{
+                    configCloud();
                     MediaManager.get().upload(imgPath).callback(new UploadCallback() {
                         @Override
                         public void onStart(String requestId) {
                             Log.d(TAG, "onStart: " + "started");
+
                         }
 
                         @Override
@@ -143,7 +154,8 @@ public class AddBookActivity extends AppCompatActivity {
                             String status = jsonObject.getString("status");
                             if (status.equals("success")){
                                 CheckConnection.showToast_Short(getApplicationContext(), "Đã thêm sách thành công !");
-                                finish();
+                                Intent intent = new Intent(getApplicationContext(), AdminBookActivity.class);
+                                startActivity(intent);
                             }
                             else{
                                 CheckConnection.showToast_Short(getApplicationContext(), status);
@@ -182,28 +194,52 @@ public class AddBookActivity extends AppCompatActivity {
       Intent intent = new Intent();
       intent.setType("image/*");
       intent.setAction(Intent.ACTION_GET_CONTENT);
-      startActivityForResult(intent,IMAGE_REQ);
+//      startActivityForResult(intent,IMAGE_REQ);
+        someActivityResultLauncher.launch(intent);
 
     }
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        Intent data = result.getData();
+                        imgPath = data.getData();
+                        Picasso.get().load(imgPath)
+                                .placeholder(R.drawable.img)
+                                .error(R.drawable.img_1)
+                                .into(imgPick);
+                    }
+                }
+            });
 
     private void configCloud() {
-        Map config = new HashMap();
-        config.put("cloud_name", "dadcmqprj");
-        config.put("api_key", "156293957484648");
-        config.put("api_secret", "hEcqgn1-ktN4c-1WYbEKwZQ8PPQ");
-        MediaManager.init(this, config);
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == IMAGE_REQ && resultCode == Activity.RESULT_OK && data != null && data.getData() != null){
-            imgPath = data.getData();
-            Picasso.get().load(imgPath)
-                    .placeholder(R.drawable.img)
-                    .error(R.drawable.img_1)
-                    .into(imgPick);
+        try{
+            linear.addView(footerView);
+            Map config = new HashMap();
+            config.put("cloud_name", "dadcmqprj");
+            config.put("api_key", "156293957484648");
+            config.put("api_secret", "hEcqgn1-ktN4c-1WYbEKwZQ8PPQ");
+            MediaManager.init(this, config);
         }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(requestCode == IMAGE_REQ && resultCode == Activity.RESULT_OK && data != null && data.getData() != null){
+//            imgPath = data.getData();
+//            Picasso.get().load(imgPath)
+//                    .placeholder(R.drawable.img)
+//                    .error(R.drawable.img_1)
+//                    .into(imgPick);
+//        }
+//    }
     private void ActionToolBar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -228,6 +264,8 @@ public class AddBookActivity extends AppCompatActivity {
         kinhteBook = findViewById(R.id.kinhteBook);
         ngoainguBook = findViewById(R.id.ngoainguBook);
         tamlyBook = findViewById(R.id.tamlyBook);
-
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        footerView = inflater.inflate(R.layout.processbar, null);
+        linear = findViewById(R.id.linearProgresss);
     }
 }

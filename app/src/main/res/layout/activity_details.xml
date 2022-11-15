@@ -52,24 +52,37 @@
                 android:text="100000đ"
                 android:textColor="#E60000"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"
+                android:layout_margin="10dp"
                 android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_margin="3dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/spinner"
-                android:textAlignment="center"
-                android:layout_width="80dp"
-                android:gravity="center"
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            </Spinner>
+                <TextView
+                    android:text="Số lượng: "
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_margin="3dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/spinner"
+                    android:textAlignment="center"
+                    android:layout_width="80dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+                </Spinner>
+            </LinearLayout>
             <Button
                 android:id="@+id/addCart"
                 android:background="@drawable/pillbutton"
-                app:backgroundTint="@null"
+                app:backgroundTint="#00BCD4"
                 android:text="Thêm vào giỏ hàng"
                 android:textSize="13sp"
                 android:textColor="#FFFFFF"

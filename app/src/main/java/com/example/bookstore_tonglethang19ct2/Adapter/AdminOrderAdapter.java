@@ -11,6 +11,7 @@ import com.example.bookstore_tonglethang19ct2.Models.Customer;
 import com.example.bookstore_tonglethang19ct2.Models.Order;
 import com.example.bookstore_tonglethang19ct2.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class AdminOrderAdapter extends BaseAdapter {
@@ -60,7 +61,8 @@ public class AdminOrderAdapter extends BaseAdapter {
         viewHolder.idCus.setText(order.getIdCus());
         viewHolder.nameBook.setText(order.getNameBook());
         viewHolder.soluongBook.setText(order.getSoluongBook()+"");
-        viewHolder.totalPriceBook.setText(order.getTotalPriceBook() + "đ");
+        java.text.DecimalFormat deci = new DecimalFormat("###,###,###");
+        viewHolder.totalPriceBook.setText(deci.format(order.getTotalPriceBook()) + "đ");
         return view;
     }
 }

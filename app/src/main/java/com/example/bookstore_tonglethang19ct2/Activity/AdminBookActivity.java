@@ -44,8 +44,7 @@ import java.util.ArrayList;
 
 public class AdminBookActivity extends AppCompatActivity {
     Toolbar toolbar;
-    ListView listView, listAdmin;
-    NavigationView naviAdmin;
+    ListView listView;
     AdminBookAdapter adminbookAdapter;
     ArrayList<Book> arrBook;
     ArrayList<Admin> arrAdmin;
@@ -69,7 +68,6 @@ public class AdminBookActivity extends AppCompatActivity {
             ActionToolBar();
             GetData(page);
             LoadMoreData();
-            catchOnItemListView();
 
             addBook.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -82,31 +80,6 @@ public class AdminBookActivity extends AppCompatActivity {
         else{
             CheckConnection.showToast_Short(getApplicationContext(), "You check your connection again !");
         }
-    }
-
-    private void catchOnItemListView() {
-        listAdmin.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                switch(position){
-                    case 0:
-                        Intent intent = new Intent(getApplicationContext(), AdminBookActivity.class);
-                        startActivity(intent);
-                        break;
-                    case 1:
-                        Intent intent1 = new Intent(getApplicationContext(), AdminCustomerActivity.class);
-                        startActivity(intent1);
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent3);
-                        break;
-                }
-            }
-        });
-
     }
 
     private void LoadMoreData() {
@@ -261,8 +234,6 @@ public class AdminBookActivity extends AppCompatActivity {
     private void mapping() {
         toolbar = findViewById(R.id.toolBarAdminBook);
         listView = findViewById(R.id.allBook);
-        listAdmin = findViewById(R.id.listViewAdmin);
-        naviAdmin = findViewById(R.id.naviAdmin);
         arrBook = new ArrayList<>();
         arrAdmin = new ArrayList<>();
         drawerLayout = findViewById(R.id.drawerAdmin);
@@ -272,6 +243,7 @@ public class AdminBookActivity extends AppCompatActivity {
         footerView = inflater.inflate(R.layout.processbar, null);
         myHandler = new myHandler();
         addBook = findViewById(R.id.addBook);
+
     }
     public class myHandler extends Handler {
         @Override

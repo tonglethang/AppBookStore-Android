@@ -28,6 +28,7 @@ import com.example.bookstore_tonglethang19ct2.Adapter.AdminCustomerAdapter;
 import com.example.bookstore_tonglethang19ct2.Adapter.AdminOrderAdapter;
 import com.example.bookstore_tonglethang19ct2.Models.Admin;
 import com.example.bookstore_tonglethang19ct2.Models.Customer;
+import com.example.bookstore_tonglethang19ct2.Models.DetailsOrder;
 import com.example.bookstore_tonglethang19ct2.Models.Order;
 import com.example.bookstore_tonglethang19ct2.R;
 import com.example.bookstore_tonglethang19ct2.Utils.CheckConnection;
@@ -68,7 +69,9 @@ public class AdminOrderActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                Intent intent = new Intent(getApplicationContext(), DetailsOrderActivity.class);
+                intent.putExtra("idCus", arrOrder.get(i).getIdCus());
+                startActivity(intent);
             }
         });
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

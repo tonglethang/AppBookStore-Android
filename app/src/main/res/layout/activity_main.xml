@@ -11,51 +11,63 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolBarChinh"
-            app:title="Trang chủ"
-            app:titleTextColor="#FFF"
-            android:background="#00BCD4"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
 
-        </androidx.appcompat.widget.Toolbar>
-        <ViewFlipper
-            android:id="@+id/viewFlipper"
-            android:layout_width="match_parent"
-            android:layout_height="200dp">
-
-        </ViewFlipper>
         <LinearLayout
-            android:background="#EFEFEF"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tất cả sản phẩm"
-                android:layout_margin="5dp"
-                android:textColor="#000"
-                android:textStyle="bold"
-                android:textSize="20sp" />
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyNew"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBarChinh"
+                app:title="Trang chủ"
+                app:titleTextColor="#FFF"
+                android:background="#00BCD4"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="?attr/actionBarSize">
 
-            </androidx.recyclerview.widget.RecyclerView>
+            </androidx.appcompat.widget.Toolbar>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ViewFlipper
+                        android:id="@+id/viewFlipper"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp">
+
+                    </ViewFlipper>
+                    <LinearLayout
+                        android:background="#EFEFEF"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tất cả sản phẩm"
+                            android:layout_margin="5dp"
+                            android:textColor="#000"
+                            android:textStyle="bold"
+                            android:textSize="20sp" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyNew"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
         </LinearLayout>
-    </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/naviChinh"
@@ -70,6 +82,7 @@
         </ListView>
 
     </com.google.android.material.navigation.NavigationView>
+
 </androidx.drawerlayout.widget.DrawerLayout>
 
 </LinearLayout>

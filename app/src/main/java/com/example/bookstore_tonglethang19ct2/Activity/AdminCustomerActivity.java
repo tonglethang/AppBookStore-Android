@@ -70,25 +70,6 @@ public class AdminCustomerActivity extends AppCompatActivity {
     }
 
     private void catchOnItemListView() {
-        listAdmin.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                switch(position){
-                    case 0:
-                        Intent intent = new Intent(getApplicationContext(), AdminBookActivity.class);
-                        startActivity(intent);
-                        break;
-                    case 1:
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent1);
-                        break;
-                }
-            }
-        });
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
@@ -219,7 +200,6 @@ public class AdminCustomerActivity extends AppCompatActivity {
     private void mapping() {
         toolbar = findViewById(R.id.toolBarAdminCus);
         listView = findViewById(R.id.allCustomer);
-        naviAdmin = findViewById(R.id.naviAdmin);
         arrCustomer = new ArrayList<>();
         arrAdmin = new ArrayList<>();
         drawerLayout = findViewById(R.id.drawerAdmin);

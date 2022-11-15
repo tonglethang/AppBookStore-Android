@@ -298,8 +298,10 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolBarChinh);
         viewFipper = (ViewFlipper) findViewById(R.id.viewFlipper);
         recyclerTrangchu = (RecyclerView) findViewById(R.id.recyNew);
+        recyclerTrangchu.setNestedScrollingEnabled(false);
         naviChinh  = (NavigationView) findViewById(R.id.naviChinh);
         listView = (ListView) findViewById(R.id.listViewChinh);
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         arrTypeBook = new ArrayList<>();
         arrTypeBook.add(0, new TypeBook("", "Trang chủ", "https://cdn.pixabay.com/photo/2015/12/28/02/58/home-1110868_960_720.png"));

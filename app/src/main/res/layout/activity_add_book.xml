@@ -11,6 +11,7 @@
         app:title="Thêm sách"
         app:titleTextColor="#FFF"
         android:background="#4CAF50"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
     </androidx.appcompat.widget.Toolbar>
@@ -22,7 +23,6 @@
             android:background="@drawable/borderinfo"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,9 +72,9 @@
                     android:src="@drawable/upload"
                     android:scaleType="fitXY"
                     android:layout_marginLeft="50dp"
-                    android:layout_weight="4"
+                    android:layout_weight="3.5"
                     android:layout_width="0dp"
-                    android:layout_height="80dp" />
+                    android:layout_height="100dp" />
             </LinearLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_marginTop="20dp"
@@ -91,6 +91,7 @@
             <RadioGroup
                 android:background="@drawable/border"
                 android:layout_marginTop="20dp"
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
@@ -135,7 +136,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="20dp"
                 android:hint="Mô tả"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -148,29 +149,38 @@
                     android:minLines="6"/>
             </com.google.android.material.textfield.TextInputLayout>
             <LinearLayout
+                android:id="@+id/linearProgresss"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+            <LinearLayout
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="20dp"
                 android:orientation="vertical"
+                android:weightSum="2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
                     android:id="@+id/addBook"
                     app:backgroundTint="@null"
-                    android:padding="11dp"
                     android:background="@drawable/pillbutton"
                     android:text="Thêm"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="0dp"/>
                 <Button
                     android:id="@+id/back"
-                    android:padding="11dp"
-                    app:backgroundTint="#B8B8B8"
+                    app:backgroundTint="#DCDCDC"
                     android:background="@drawable/pillbutton"
-                    android:text="TRỞ VỀ"
+                    android:text="Trở về"
                     android:textColor="@color/black"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="0dp"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
