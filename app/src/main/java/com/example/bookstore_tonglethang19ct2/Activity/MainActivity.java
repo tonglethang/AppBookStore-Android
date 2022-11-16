@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
@@ -19,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.android.volley.RequestQueue;
@@ -85,6 +87,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+        final MenuItem item = menu.findItem(R.id.menuCart);
+        View actionView = item.getActionView();
+        TextView cartBadge = actionView.findViewById(R.id.cart_badge);
+        cartBadge.setText(String.valueOf(arrCart.size()));
+
+
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onOptionsItemSelected(item);
+            }
+        });
         return true;
     }
 
@@ -298,7 +312,13 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolBarChinh);
         viewFipper = (ViewFlipper) findViewById(R.id.viewFlipper);
         recyclerTrangchu = (RecyclerView) findViewById(R.id.recyNew);
-        recyclerTrangchu.setNestedScrollingEnabled(false);
+//        recyclerTrangchu.setNestedScrollingEnabled(false);
+        RecyclerView.SmoothScroller smoothScroller = new
+                LinearSmoothScroller(getApplicationContext()) {
+                    @Override protected int getVerticalSnapPreference() {
+                        return LinearSmoothScroller.SNAP_TO_START;
+                    }
+                };
         naviChinh  = (NavigationView) findViewById(R.id.naviChinh);
         listView = (ListView) findViewById(R.id.listViewChinh);
 

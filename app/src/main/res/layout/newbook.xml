@@ -7,11 +7,13 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardnewBook"
         app:cardCornerRadius="4dp"
+        android:background="@drawable/shadowbottom"
+
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:background="@drawable/border"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

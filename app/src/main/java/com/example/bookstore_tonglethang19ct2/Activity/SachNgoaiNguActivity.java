@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -65,6 +66,18 @@ public class SachNgoaiNguActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+        final MenuItem item = menu.findItem(R.id.menuCart);
+        View actionView = item.getActionView();
+        TextView cartBadge = actionView.findViewById(R.id.cart_badge);
+        cartBadge.setText(String.valueOf(MainActivity.arrCart.size()));
+
+
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onOptionsItemSelected(item);
+            }
+        });
         return true;
     }
 

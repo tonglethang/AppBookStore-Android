@@ -2,11 +2,12 @@ package com.example.bookstore_tonglethang19ct2.Activity;
 
 import static java.util.stream.Collectors.mapping;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,6 +57,18 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+        final MenuItem item = menu.findItem(R.id.menuCart);
+        View actionView = item.getActionView();
+        TextView cartBadge = actionView.findViewById(R.id.cart_badge);
+        cartBadge.setText(String.valueOf(MainActivity.arrCart.size()));
+
+
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onOptionsItemSelected(item);
+            }
+        });
         return true;
     }
 
@@ -76,7 +89,8 @@ public class DetailsActivity extends AppCompatActivity {
                     int quantity = Integer.parseInt(spinner.getSelectedItem().toString());
                     boolean exit = false;
                     for(int i = 0; i < MainActivity.arrCart.size(); i++) {
-                        if(MainActivity.arrCart.get(i).getIdBook() == id) {
+                        Log.d("idBookCart: ",MainActivity.arrCart.get(i).getIdBook() + "thang");
+                        if(MainActivity.arrCart.get(i).getIdBook().equals(id)) {
                             MainActivity.arrCart.get(i).setQuantity(MainActivity.arrCart.get(i).getQuantity() + quantity);
                             if(MainActivity.arrCart.get(i).getQuantity() >= soluong){
                                 MainActivity.arrCart.get(i).setQuantity(soluong);
@@ -112,7 +126,7 @@ public class DetailsActivity extends AppCompatActivity {
         type = book.getType();
         mota = book.getMota();
         idType = book.getIdType();
-
+        Log.d("idBook: ", id +  "thang");
         Integer[] quanSpinner = new Integer[soluong];
         for (int i = 0; i < soluong; i++) {
             int tmp = i + 1;
@@ -140,7 +154,7 @@ public class DetailsActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                    finish();
             }
         });
     }

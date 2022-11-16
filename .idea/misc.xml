@@ -4,9 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/drawable/badge_shape.xml" value="0.1" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/drawable/border.xml" value="0.147" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.147" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/drawable/pillbutton.xml" value="0.147" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/drawable/shadowbottom.xml" value="0.147" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/drawable/shoppingcart.xml" value="0.147" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/activity_add_book.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/activity_admin.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/activity_admin_actitvity.xml" value="0.2" />
@@ -23,10 +26,11 @@
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/admin.xml" value="0.253125" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/adminbook.xml" value="0.25025641025641027" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/cart.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/cart_action_item.xml" value="0.8" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/customer.xml" value="0.253125" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/kinhte.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/listview_typebook.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/newbook.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/newbook.xml" value="0.23484848484848486" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/order.xml" value="0.253125" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/orderbook.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/processbar.xml" value="0.25416666666666665" />

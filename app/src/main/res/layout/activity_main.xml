@@ -31,14 +31,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
                 <LinearLayout
+                    android:weightSum="10"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <ViewFlipper
                         android:id="@+id/viewFlipper"
+                        android:layout_weight="2"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp">
+                        android:layout_height="170dp">
 
                     </ViewFlipper>
                     <LinearLayout
@@ -78,7 +80,6 @@
             android:id="@+id/listViewChinh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
         </ListView>
 
     </com.google.android.material.navigation.NavigationView>
