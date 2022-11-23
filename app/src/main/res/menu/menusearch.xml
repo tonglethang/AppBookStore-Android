@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/menuSearch"
+    <item android:id="@+id/activity_search"
         android:title="Tìm kiếm"
         android:icon="@drawable/search"
-        app:showAsAction="always" />
-
-    <item
-        android:id="@+id/menuCart"
-        android:title="Cart"
-        android:icon="@drawable/cart"
         app:showAsAction="always"
-        app:actionLayout="@layout/cart_action_item"/>
+        app:actionViewClass="androidx.appcompat.widget.SearchView">
 
+    </item>
 </menu>

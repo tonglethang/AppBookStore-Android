@@ -90,6 +90,10 @@ public class SachKinhTeActivity extends AppCompatActivity {
             case R.id.menuCart:
                 Intent intent = new Intent(getApplicationContext(), CartActivity.class);
                 startActivity(intent);
+            case R.id.menuSearch:
+                Intent intent1 = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent1);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

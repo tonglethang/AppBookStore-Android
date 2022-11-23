@@ -22,9 +22,12 @@
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/activity_info_user.xml" value="0.20599409033347404" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/activity_login_admin_actitvity.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/activity_main.xml" value="0.22627737226277372" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/activity_sach_thieu_nhi.xml" value="0.20863616930312098" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/activity_search.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/activity_update_book.xml" value="0.22962962962962963" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/admin.xml" value="0.253125" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/adminbook.xml" value="0.25025641025641027" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/booksrearch.xml" value="0.20778110303548525" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/cart.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/cart_action_item.xml" value="0.8" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/customer.xml" value="0.253125" />
@@ -36,6 +39,7 @@
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/layout/processbar.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/menu/menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/menu/menubook.xml" value="0.253125" />
+        <entry key="..\:/Users/MY-PC/AndroidStudioProjects/AppBookStore-Android/app/src/main/res/menu/menusearch.xml" value="0.20863616930312098" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/drawable/border.xml" value="0.149" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/drawable/borderedittext.xml" value="0.1615" />
         <entry key="..\:/Users/MY-PC/AndroidStudioProjects/BookStore_TongLeThang19CT2/app/src/main/res/drawable/borderinfo.xml" value="0.1615" />

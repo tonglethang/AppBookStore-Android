@@ -192,7 +192,8 @@ public class AdminCustomerActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(getApplicationContext(), AdminActitvity.class);
+                startActivity(intent);
             }
         });
     }
